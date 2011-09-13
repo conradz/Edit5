@@ -14,13 +14,14 @@ using System.Windows.Shapes;
 using IronJS;
 using IronJS.Hosting;
 using System.IO;
+using Edit5.Core;
 
 namespace Edit5
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IMainWindow
     {
         public MainWindow()
         {

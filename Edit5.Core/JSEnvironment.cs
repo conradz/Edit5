@@ -6,9 +6,9 @@ using IronJS;
 using IronJS.Hosting;
 using System.IO;
 
-namespace Edit5
+namespace Edit5.Core
 {
-    static class JSEnvironment
+    public static class JSEnvironment
     {
         public static CSharp.Context Main { get; set; }
 

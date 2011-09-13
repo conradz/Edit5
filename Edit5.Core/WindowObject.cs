@@ -7,31 +7,23 @@ using Env = IronJS.Environment;
 using IronJS.Hosting;
 using IronJS.Native;
 
-namespace Edit5
+namespace Edit5.Core
 {
-    class WindowObject : CommonObject
+    public static class WindowObject
     {
-        MainWindow window;
-
-        public WindowObject(MainWindow window, Env env, CommonObject prototype)
-            : base(env, env.Maps.Base, prototype)
-        {
-            this.window = window;
-        }
-
         static void SetTitle(FunctionObject func, CommonObject that, string value)
         {
-            var window = that.Get("_window").Unbox<MainWindow>();
+            var window = that.Get("_window").Unbox<IMainWindow>();
             window.Title = value;
         }
 
         static string GetTitle(FunctionObject func, CommonObject that)
         {
-            var window = that.Get("_window").Unbox<MainWindow>();
+            var window = that.Get("_window").Unbox<IMainWindow>();
             return window.Title;
         }
 
-        public static void AttachToContext(CSharp.Context context, MainWindow window)
+        public static void AttachToContext(CSharp.Context context, IMainWindow window)
         {
             var jsWindow = context.Environment.NewObject();
             
