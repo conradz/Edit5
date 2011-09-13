@@ -15,13 +15,14 @@ using IronJS;
 using IronJS.Hosting;
 using System.IO;
 using Edit5.Core;
+using Microsoft.Windows.Controls.Ribbon;
 
 namespace Edit5
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IMainWindow
+    public partial class MainWindow : RibbonWindow, IMainWindow
     {
         public MainWindow()
         {

@@ -27,6 +27,7 @@ namespace Edit5
         {
             this.MainWindow = (Window)container.Resolve<IMainWindow>();
             base.OnStartup(e);
+            this.MainWindow.Show();
         }
     }
 }
