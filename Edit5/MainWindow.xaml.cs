@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using IronJS;
 using IronJS.Hosting;
+using System.IO;
 
 namespace Edit5
 {
@@ -24,10 +25,8 @@ namespace Edit5
         public MainWindow()
         {
             InitializeComponent();
-
-            var c = new IronJS.Hosting.CSharp.Context();
-            c.SetGlobal("Test", "MyValue");
-            this.Title = c.Execute("Test").ToString();
+            WindowObject.AttachToContext(JSEnvironment.Main, this);
+            JSEnvironment.Initialize();
         }
     }
 }
