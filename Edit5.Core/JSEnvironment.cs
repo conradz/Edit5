@@ -10,7 +10,8 @@ namespace Edit5.Core
 {
     public static class JSEnvironment
     {
-        public static CSharp.Context Main { get; set; }
+        public static CSharp.Context Main { get; private set; }
+        static bool isInitialized = false;
 
         static JSEnvironment()
         {
@@ -19,12 +20,20 @@ namespace Edit5.Core
 
         public static void Initialize()
         {
-            string dir = Path.GetDirectoryName(typeof(JSEnvironment).Assembly.Location);
-            var files = Directory.EnumerateFiles(Path.Combine(dir, "JS"), "*.js");
+            if (isInitialized)
+                return;
+            else
+                isInitialized = true;
 
-            foreach (string file in files)
+            string dir = Path.GetDirectoryName(typeof(JSEnvironment).Assembly.Location);
+            dir = Path.Combine(dir, "JS");
+
+            if (Directory.Exists(dir))
             {
-                Main.ExecuteFile(file);
+                var files = Directory.EnumerateFiles(dir, "*.js");
+
+                foreach (string file in files)
+                    Main.ExecuteFile(file);
             }
         }
     }
