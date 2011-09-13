@@ -15,7 +15,7 @@ namespace Edit5.Tests
     public class WindowObjectTest
     {
         [TestMethod]
-        public void TitleTest()
+        public void SetTitleTest()
         {
             var mock = new MainWindowMock();
             var context = new CSharp.Context();
@@ -24,6 +24,32 @@ namespace Edit5.Tests
             context.Execute("window.setTitle(\"Test\")");
 
             Assert.AreEqual(mock.Title, "Test");
+        }
+
+        [TestMethod]
+        public void GetTitleTest()
+        {
+            var mock = new MainWindowMock();
+            var context = new CSharp.Context();
+            WindowObject.AttachToContext(context, mock);
+
+            string title = "Test";
+            mock.Title = title;
+            string result = context.Execute("window.getTitle()").ToString();
+
+            Assert.AreEqual(result, title);
+        }
+
+        [TestMethod]
+        public void ExitTest()
+        {
+            var mock = new MainWindowMock();
+            var context = new CSharp.Context();
+            WindowObject.AttachToContext(context, mock);
+
+            context.Execute("window.exit()");
+
+            Assert.AreEqual(mock.ExitCalled, 1);
         }
     }
 }

@@ -8,5 +8,7 @@ namespace Edit5.Core
     public interface IMainWindow
     {
         string Title { get; set; }
+
+        void Exit();
     }
 }

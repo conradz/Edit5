@@ -8,6 +8,13 @@ namespace Edit5.Tests
 {
     class MainWindowMock : IMainWindow
     {
+        public int ExitCalled { get; set; }
+
         public string Title { get; set; }
+
+        public void Exit()
+        {
+            ExitCalled++;
+        }
     }
 }

@@ -30,5 +30,10 @@ namespace Edit5
             WindowObject.AttachToContext(JSEnvironment.Main, this);
             JSEnvironment.Initialize();
         }
+
+        void IMainWindow.Exit()
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
