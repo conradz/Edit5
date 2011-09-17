@@ -16,10 +16,16 @@ namespace Edit5.Tests
         {
             var mock = new CommandsMock();
             var context = new CSharp.Context();
-            context.SetGlobal("cmd", new CommandObject(context.Environment, context.Environment.Prototypes.Object, mock));
-            context.Execute("cmd.addApplicationCommand('Value');");
+
+            CommandObject.Attach(context);
+            context.SetGlobal("cmd", new CommandsObject(context.Environment, context.Environment.Prototypes.Object, mock));
+
+            context.Execute(@"var c = new Command();
+                c.setText('Value');
+                cmd.addApplicationCommand(c);");
+
             Assert.AreEqual(1, mock.ApplicationCommands.Count);
-            Assert.AreEqual("Value", mock.ApplicationCommands[0]);
+            Assert.AreEqual("Value", mock.ApplicationCommands[0].Text);
         }
     }
 }

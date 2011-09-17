@@ -5,8 +5,10 @@ using System.Text;
 
 namespace Edit5.Core
 {
-    public interface ICommands
+    public interface ICommand
     {
-        void AddApplicationCommand(ICommand command);
+        string Text { get; set; }
+
+        void RaiseEvent(string eventName, object eventData);
     }
 }

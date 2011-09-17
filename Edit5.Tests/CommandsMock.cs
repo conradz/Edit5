@@ -8,16 +8,16 @@ namespace Edit5.Tests
 {
     class CommandsMock : ICommands
     {
-        public List<string> ApplicationCommands { get; private set; }
+        public List<ICommand> ApplicationCommands { get; private set; }
 
         public CommandsMock()
         {
-            ApplicationCommands = new List<string>();
+            ApplicationCommands = new List<ICommand>();
         }
 
-        public void AddApplicationCommand(string text)
+        public void AddApplicationCommand(ICommand command)
         {
-            ApplicationCommands.Add(text);
+            ApplicationCommands.Add(command);
         }
     }
 }

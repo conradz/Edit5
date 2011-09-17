@@ -19,9 +19,16 @@ namespace Edit5
             ribbon.QuickAccessToolBar = new RibbonQuickAccessToolBar();
         }
 
-        public void AddApplicationCommand(string text)
+        public void AddApplicationCommand(ICommand command)
         {
-            ribbon.ApplicationMenu.Items.Add(new RibbonApplicationMenuItem() { Header = text });
+            var item = new RibbonApplicationMenuItem();
+            item.Header = command.Text;
+            item.Click += delegate
+            {
+                command.RaiseEvent("click", null);
+            };
+
+            ribbon.ApplicationMenu.Items.Add(item);
         }
     }
 }

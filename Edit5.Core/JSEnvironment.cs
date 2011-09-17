@@ -16,6 +16,7 @@ namespace Edit5.Core
         static JSEnvironment()
         {
             Main = new CSharp.Context();
+            CommandObject.Attach(Main);
         }
 
         public static void Initialize()

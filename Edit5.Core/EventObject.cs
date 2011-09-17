@@ -24,6 +24,11 @@ namespace Edit5.Core
             events = new Dictionary<string, List<FunctionObject>>();
         }
 
+        public void RaiseEvent(string eventName, object data)
+        {
+            this.Trigger(eventName, BoxingUtils.JsBox(data));
+        }
+
         void Trigger(string eventName, BoxedValue data)
         {
             List<FunctionObject> handlers;
@@ -87,9 +92,22 @@ namespace Edit5.Core
         /// <param name="context">The context to attach to.</param>
         public static void Attach(CSharp.Context context)
         {
+            context.SetGlobal("EventObject", Create(context));
+        }
+
+        public static FunctionObject Create(CSharp.Context context)
+        {
             var ctor = Utils.CreateConstructor(
                 context.Environment, 0,
                 (Func<FunctionObject, CommonObject, CommonObject>)Construct);
+
+            ctor.Put("prototype", CreatePrototype(context));
+
+            return ctor;
+        }
+
+        public static CommonObject CreatePrototype(CSharp.Context context)
+        {
             var addHandler = Utils.CreateFunction(
                 context.Environment, 2,
                 (Action<FunctionObject, CommonObject, string, FunctionObject>)AddHandler);
@@ -106,9 +124,7 @@ namespace Edit5.Core
             prototype.Put("removeHandler", removeHandler);
             prototype.Put("trigger", trigger);
 
-            ctor.Put("prototype", prototype);
-
-            context.SetGlobal("EventObject", ctor);
+            return prototype;
         }
     }
 }
