@@ -19,14 +19,25 @@ namespace Edit5
 
         public App()
         {
+            // Create and configure the Unity container
             container = new UnityContainer();
             container.LoadConfiguration();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            this.MainWindow = (Window)container.Resolve<IMainWindow>();
+            // Get the main window
+            IMainWindow window = container.Resolve<IMainWindow>();
+            this.MainWindow = (Window)window;
+
+            // Startup
             base.OnStartup(e);
+
+            // Startup the Javascript environment
+            WindowObject.AttachToContext(JSEnvironment.Main, window);
+            JSEnvironment.Initialize();
+
+            // Show the window
             this.MainWindow.Show();
         }
     }

@@ -9,13 +9,6 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         
-        <ribbon:Ribbon>
-            <ribbon:Ribbon.QuickAccessToolBar>
-                <ribbon:RibbonQuickAccessToolBar />
-            </ribbon:Ribbon.QuickAccessToolBar>
-            <ribbon:Ribbon.ApplicationMenu>
-                <ribbon:RibbonApplicationMenu />
-            </ribbon:Ribbon.ApplicationMenu>
-        </ribbon:Ribbon>
+        <ribbon:Ribbon x:Name="Ribbon" />
     </Grid>
 </ribbon:RibbonWindow>

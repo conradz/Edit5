@@ -8,6 +8,11 @@ namespace Edit5.Tests
 {
     class MainWindowMock : IMainWindow
     {
+        public MainWindowMock()
+        {
+            this.Commands = new CommandsMock();
+        }
+
         public int ExitCalled { get; set; }
 
         public string Title { get; set; }
@@ -16,5 +21,7 @@ namespace Edit5.Tests
         {
             ExitCalled++;
         }
+
+        public ICommands Commands { get; private set; }
     }
 }

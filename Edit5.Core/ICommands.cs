@@ -5,12 +5,8 @@ using System.Text;
 
 namespace Edit5.Core
 {
-    public interface IMainWindow
+    public interface ICommands
     {
-        ICommands Commands { get; }
-
-        string Title { get; set; }
-
-        void Exit();
+        void AddApplicationCommand(string text);
     }
 }

@@ -27,13 +27,14 @@ namespace Edit5
         public MainWindow()
         {
             InitializeComponent();
-            WindowObject.AttachToContext(JSEnvironment.Main, this);
-            JSEnvironment.Initialize();
+            this.Commands = new Commands(this);
         }
 
         void IMainWindow.Exit()
         {
             Application.Current.Shutdown();
         }
+
+        public ICommands Commands { get; private set; }
     }
 }

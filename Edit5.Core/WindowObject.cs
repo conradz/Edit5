@@ -57,6 +57,10 @@ namespace Edit5.Core
             jsWindow.Put("setTitle", setTitle, DescriptorAttrs.Immutable);
             jsWindow.Put("getTitle", getTitle, DescriptorAttrs.Immutable);
             jsWindow.Put("exit", exit, DescriptorAttrs.Immutable);
+            jsWindow.Put(
+                "commands",
+                new CommandObject(context.Environment, context.Environment.Prototypes.Object, window.Commands),
+                DescriptorAttrs.Immutable);
 
             context.SetGlobal("window", jsWindow);
         }

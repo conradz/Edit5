@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandObject.cs" />
     <Compile Include="EventObject.cs" />
+    <Compile Include="ICommands.cs" />
     <Compile Include="IMainWindow.cs" />
     <Compile Include="JSEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
