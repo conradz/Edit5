@@ -64,8 +64,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandsMock.cs" />
-    <Compile Include="CommandsTest.cs" />
     <Compile Include="CommandTest.cs" />
     <Compile Include="EventObjectTest.cs" />
     <Compile Include="JSEnvironmentTest.cs" />

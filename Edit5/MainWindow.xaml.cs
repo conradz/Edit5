@@ -16,6 +16,8 @@ using IronJS.Hosting;
 using System.IO;
 using Edit5.Core;
 using Microsoft.Windows.Controls.Ribbon;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace Edit5
 {
@@ -24,10 +26,17 @@ namespace Edit5
     /// </summary>
     public partial class MainWindow : RibbonWindow, IMainWindow
     {
+        Commands commandManager;
+
         public MainWindow()
         {
             InitializeComponent();
-            this.Commands = new Commands(this);
+
+            this.Commands = new ObservableCollection<Core.ICommand>();
+            this.ApplicationCommands = new ObservableCollection<Core.ICommand>();
+            commandManager = new Edit5.Commands(Ribbon);
+            commandManager.BindCommands(Commands);
+            commandManager.BindApplicationCommands(ApplicationCommands);
         }
 
         void IMainWindow.Exit()
@@ -35,6 +44,10 @@ namespace Edit5
             Application.Current.Shutdown();
         }
 
-        public ICommands Commands { get; private set; }
+        public ObservableCollection<Core.ICommand> Commands { get; private set; }
+
+        public ObservableCollection<Core.ICommand> ApplicationCommands { get; private set; }
+
+        
     }
 }

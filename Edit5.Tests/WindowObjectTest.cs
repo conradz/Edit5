@@ -51,5 +51,63 @@ namespace Edit5.Tests
 
             Assert.AreEqual(mock.ExitCalled, 1);
         }
+
+        [TestMethod]
+        public void AddCommandTest()
+        {
+            var mock = new MainWindowMock();
+            var context = new CSharp.Context();
+            WindowObject.AttachToContext(context, mock);
+            CommandObject.Attach(context);
+
+            context.Execute("window.addCommand(new Command())");
+
+            Assert.AreEqual(mock.Commands.Count, 1);
+        }
+
+        [TestMethod]
+        public void RemoveCommandTest()
+        {
+            var mock = new MainWindowMock();
+            var context = new CSharp.Context();
+            WindowObject.AttachToContext(context, mock);
+            CommandObject.Attach(context);
+
+            context.Execute(@"
+                var c = new Command();
+                window.addCommand(c);
+                window.removeCommand(c);");
+
+            Assert.AreEqual(mock.Commands.Count, 0);
+        }
+
+        [TestMethod]
+        public void AddApplicationCommandTest()
+        {
+            var mock = new MainWindowMock();
+            var context = new CSharp.Context();
+            WindowObject.AttachToContext(context, mock);
+            CommandObject.Attach(context);
+
+            context.Execute("window.addApplicationCommand(new Command())");
+
+            Assert.AreEqual(mock.ApplicationCommands.Count, 1);
+        }
+
+        [TestMethod]
+        public void RemoveApplicationCommandTest()
+        {
+            var mock = new MainWindowMock();
+            var context = new CSharp.Context();
+            WindowObject.AttachToContext(context, mock);
+            CommandObject.Attach(context);
+
+            context.Execute(@"
+                var c = new Command();
+                window.addApplicationCommand(c);
+                window.removeApplicationCommand(c);");
+
+            Assert.AreEqual(mock.ApplicationCommands.Count, 0);
+        }
     }
 }

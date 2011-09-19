@@ -31,6 +31,30 @@ namespace Edit5.Core
             return window.Title;
         }
 
+        static void AddCommand(FunctionObject func, CommonObject that, CommonObject command)
+        {
+            var window = that.CastTo<WindowObject>().window;
+            window.Commands.Add((ICommand)command);
+        }
+
+        static void RemoveCommand(FunctionObject func, CommonObject that, CommonObject command)
+        {
+            var window = that.CastTo<WindowObject>().window;
+            window.Commands.Remove((ICommand)command);
+        }
+
+        static void AddApplicationCommand(FunctionObject func, CommonObject that, CommonObject command)
+        {
+            var window = that.CastTo<WindowObject>().window;
+            window.ApplicationCommands.Add((ICommand)command);
+        }
+
+        static void RemoveApplicationCommand(FunctionObject func, CommonObject that, CommonObject command)
+        {
+            var window = that.CastTo<WindowObject>().window;
+            window.ApplicationCommands.Remove((ICommand)command);
+        }
+
         static void Exit(FunctionObject func, CommonObject that)
         {
             var window = that.CastTo<WindowObject>().window;
@@ -50,17 +74,29 @@ namespace Edit5.Core
             var getTitle = Utils.CreateFunction(
                 context.Environment, 0,
                 (Func<FunctionObject, CommonObject, string>)GetTitle);
+            var addCommand = Utils.CreateFunction(
+                context.Environment, 1,
+                (Action<FunctionObject, CommonObject, CommonObject>)AddCommand);
+            var removeCommand = Utils.CreateFunction(
+                context.Environment, 1,
+                (Action<FunctionObject, CommonObject, CommonObject>)RemoveCommand);
+            var addApplicationCommand = Utils.CreateFunction(
+                context.Environment, 1,
+                (Action<FunctionObject, CommonObject, CommonObject>)AddApplicationCommand);
+            var removeApplicationCommand = Utils.CreateFunction(
+                context.Environment, 1,
+                (Action<FunctionObject, CommonObject, CommonObject>)RemoveApplicationCommand);
             var exit = Utils.CreateFunction(
                 context.Environment, 0,
                 (Action<FunctionObject, CommonObject>)Exit);
 
             jsWindow.Put("setTitle", setTitle, DescriptorAttrs.Immutable);
             jsWindow.Put("getTitle", getTitle, DescriptorAttrs.Immutable);
+            jsWindow.Put("addCommand", addCommand, DescriptorAttrs.Immutable);
+            jsWindow.Put("removeCommand", removeCommand, DescriptorAttrs.Immutable);
+            jsWindow.Put("addApplicationCommand", addApplicationCommand, DescriptorAttrs.Immutable);
+            jsWindow.Put("removeApplicationCommand", removeApplicationCommand, DescriptorAttrs.Immutable);
             jsWindow.Put("exit", exit, DescriptorAttrs.Immutable);
-            jsWindow.Put(
-                "commands",
-                new CommandsObject(context.Environment, context.Environment.Prototypes.Object, window.Commands),
-                DescriptorAttrs.Immutable);
 
             context.SetGlobal("window", jsWindow);
         }

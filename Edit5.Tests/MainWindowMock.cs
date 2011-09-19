@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Edit5.Core;
+using System.Collections.ObjectModel;
 
 namespace Edit5.Tests
 {
@@ -10,7 +11,8 @@ namespace Edit5.Tests
     {
         public MainWindowMock()
         {
-            this.Commands = new CommandsMock();
+            this.Commands = new ObservableCollection<ICommand>();
+            this.ApplicationCommands = new ObservableCollection<ICommand>();
         }
 
         public int ExitCalled { get; set; }
@@ -22,6 +24,8 @@ namespace Edit5.Tests
             ExitCalled++;
         }
 
-        public ICommands Commands { get; private set; }
+        public ObservableCollection<ICommand> ApplicationCommands { get; private set; }
+
+        public ObservableCollection<ICommand> Commands { get; private set; }
     }
 }
