@@ -13,6 +13,7 @@ namespace Edit5.Tests
         {
             this.Commands = new ObservableCollection<ICommand>();
             this.ApplicationCommands = new ObservableCollection<ICommand>();
+            this.Editors = new EditorProviderMock();
         }
 
         public int ExitCalled { get; set; }
@@ -27,5 +28,7 @@ namespace Edit5.Tests
         public ObservableCollection<ICommand> ApplicationCommands { get; private set; }
 
         public ObservableCollection<ICommand> Commands { get; private set; }
+
+        public IEditorProvider Editors { get; private set; }
     }
 }

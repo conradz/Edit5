@@ -89,6 +89,7 @@ namespace Edit5.Core
             var exit = Utils.CreateFunction(
                 context.Environment, 0,
                 (Action<FunctionObject, CommonObject>)Exit);
+            var editors = new EditorProviderObject(context.Environment, context.Environment.Prototypes.Object, window.Editors);
 
             jsWindow.Put("setTitle", setTitle, DescriptorAttrs.Immutable);
             jsWindow.Put("getTitle", getTitle, DescriptorAttrs.Immutable);
@@ -97,6 +98,7 @@ namespace Edit5.Core
             jsWindow.Put("addApplicationCommand", addApplicationCommand, DescriptorAttrs.Immutable);
             jsWindow.Put("removeApplicationCommand", removeApplicationCommand, DescriptorAttrs.Immutable);
             jsWindow.Put("exit", exit, DescriptorAttrs.Immutable);
+            jsWindow.Put("editors", editors, DescriptorAttrs.Immutable);
 
             context.SetGlobal("window", jsWindow);
         }

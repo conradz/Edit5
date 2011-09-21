@@ -55,8 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandObject.cs" />
+    <Compile Include="EditorObject.cs" />
+    <Compile Include="EditorProviderObject.cs" />
     <Compile Include="EventObject.cs" />
     <Compile Include="ICommand.cs" />
+    <Compile Include="IEditor.cs" />
+    <Compile Include="IEditorProvider.cs" />
     <Compile Include="IMainWindow.cs" />
     <Compile Include="JSEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

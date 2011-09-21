@@ -109,5 +109,16 @@ namespace Edit5.Tests
 
             Assert.AreEqual(mock.ApplicationCommands.Count, 0);
         }
+
+        [TestMethod]
+        public void EditorsTest()
+        {
+            var mock = new MainWindowMock();
+            var context = new CSharp.Context();
+            WindowObject.AttachToContext(context, mock);
+
+            bool result = (bool)context.Execute("!!window.editors");
+            Assert.IsTrue(result);
+        }
     }
 }

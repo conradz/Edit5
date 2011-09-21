@@ -6,6 +6,8 @@
         Height="350" Width="525">
     <DockPanel>
         <ribbon:Ribbon x:Name="Ribbon" DockPanel.Dock="Top" />
-        <ad:DockingManager x:Name="Dock" />
+        <ad:DockingManager x:Name="Dock">
+            <ad:DocumentPane />
+        </ad:DockingManager>
     </DockPanel>
 </ribbon:RibbonWindow>

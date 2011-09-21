@@ -37,6 +37,8 @@ namespace Edit5
             commandManager = new Edit5.Commands(Ribbon);
             commandManager.BindCommands(Commands);
             commandManager.BindApplicationCommands(ApplicationCommands);
+
+            Editors = new EditorProvider(Dock);
         }
 
         void IMainWindow.Exit()
@@ -48,6 +50,6 @@ namespace Edit5
 
         public ObservableCollection<Core.ICommand> ApplicationCommands { get; private set; }
 
-        
+        public IEditorProvider Editors { get; private set; }
     }
 }

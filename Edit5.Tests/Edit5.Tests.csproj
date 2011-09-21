@@ -65,6 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandTest.cs" />
+    <Compile Include="EditorMock.cs" />
+    <Compile Include="EditorObjectTest.cs" />
+    <Compile Include="EditorProviderMock.cs" />
+    <Compile Include="EditorProviderObjectTest.cs" />
     <Compile Include="EventObjectTest.cs" />
     <Compile Include="JSEnvironmentTest.cs" />
     <Compile Include="MainWindowMock.cs" />
